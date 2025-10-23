@@ -24,7 +24,7 @@ public class TarefaService : ITarefaService
         return _mapper.Map<List<TarefaDto>>(tarefas);
     }
 
-    public Tarefa Adicionar(CriarTarefaDto tarefaDto)
+    public TarefaDto Adicionar(CriarTarefaDto tarefaDto)
     {
         var novaTarefa = new Tarefa
         {
@@ -41,7 +41,7 @@ public class TarefaService : ITarefaService
                 NotasAdicionais = tarefaDto.Detalhes.NotasAdicionais
             } : null
         };
-        return _tarefaRepository.Adicionar(novaTarefa);
+        return _mapper.Map<TarefaDto>(_tarefaRepository.Adicionar(novaTarefa));
     }
 
     public Tarefa? ObterPorId(int id)

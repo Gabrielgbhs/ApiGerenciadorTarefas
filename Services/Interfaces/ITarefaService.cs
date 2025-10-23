@@ -8,5 +8,5 @@ public interface ITarefaService
 {
     List<TarefaDto> ObterTodos();
     Tarefa? ObterPorId(int id);
-    Tarefa Adicionar(CriarTarefaDto novaTarefa);
+    TarefaDto Adicionar(CriarTarefaDto novaTarefa);
 }
