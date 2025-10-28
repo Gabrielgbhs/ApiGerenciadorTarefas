@@ -17,8 +17,10 @@ builder.Services.AddDbContext<GerenciadorTarefas.Infra.Context.TarefaContext>(op
     options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<ITarefaService, TarefaService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 builder.Services.AddScoped<ITarefaRepository, TarefaDbRepostory>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioDbRepository>();
 
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));

@@ -48,4 +48,34 @@ public class TarefaService : ITarefaService
     {
         return _tarefaRepository.ObterPorId(id);
     }
+
+    public Tarefa? Atualizar(int id, Tarefa tarefaAtualizada)
+    {
+        if (id != tarefaAtualizada.Id)
+        {
+            return null;
+        }
+        return _tarefaRepository.Atualizar(id, tarefaAtualizada);
+    }
+
+    public Tarefa? Concluir(int id)
+    {
+        var tarefa = _tarefaRepository.ObterPorId(id);
+        if (tarefa == null)
+        {
+            return null;
+        }
+        tarefa.Concluida = true;
+        return _tarefaRepository.Atualizar(id, tarefa);
+    }
+
+    public bool Remover(int id)
+    {
+        var tarefa = _tarefaRepository.ObterPorId(id);
+        if (tarefa != null)
+        {
+            return _tarefaRepository.Remover(id);
+        }
+        return false;
+    }
 }

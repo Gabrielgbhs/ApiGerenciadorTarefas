@@ -26,9 +26,24 @@ public class TarefaDbRepostory : ITarefaRepository
     {
         return _context.Tarefas.FirstOrDefault(c => c.Id == id);
     }
-    
+
     public List<Tarefa> ObterTodos()
     {
         return _context.Tarefas.Include(t => t.Usuario).Include(t => t.Detalhes).ToList();
+    }
+
+    public Tarefa? Atualizar(int id, Tarefa tarefaAtualizada)
+    {
+        _context.Tarefas.Update(tarefaAtualizada);
+        _context.SaveChanges();
+        return tarefaAtualizada;
+    }
+    
+    public bool Remover(int id) {
+        var tarefaParaDeletar = ObterPorId(id);
+        if (tarefaParaDeletar == null) return false;
+        _context.Tarefas.Remove(tarefaParaDeletar);
+        _context.SaveChanges();
+        return true;
     }
 }
