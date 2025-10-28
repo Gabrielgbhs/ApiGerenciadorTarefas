@@ -45,5 +45,37 @@ namespace GerenciadorTarefas.Controllers
             var tarefaCriada = _tarefaService.Adicionar(novaTarefa);
             return CreatedAtAction(nameof(GetById), new { id = tarefaCriada.Id }, tarefaCriada);
         }
+
+        [HttpPut("{id}")]
+        public ActionResult<Tarefa> Update(int id, Tarefa tarefaAtualizada)
+        {
+            if (string.IsNullOrWhiteSpace(tarefaAtualizada.Titulo))
+            {
+                return BadRequest("O titulo da tarefa é obrigatório.");
+            }
+            if (string.IsNullOrWhiteSpace(tarefaAtualizada.Descricao))
+            {
+                return BadRequest("A descrição da tarefa é obrigatória.");
+            }
+            var tarefa = _tarefaService.Atualizar(id, tarefaAtualizada);
+            if (tarefa == null) return NotFound();
+            return Ok(tarefa);
+        }
+
+        [HttpPut("{id}/concluir")]
+        public ActionResult<Tarefa> Concluir(int id)
+        {
+            var tarefa = _tarefaService.Concluir(id);
+            if (tarefa == null) return NotFound();
+            return Ok(tarefa);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var sucesso = _tarefaService.Remover(id);
+            if (!sucesso) return NotFound();
+            return NoContent();
+        }
     }
 }
