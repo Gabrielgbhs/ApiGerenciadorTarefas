@@ -20,5 +20,9 @@ public class MappingProfile : Profile
         CreateMap<DetalhesTarefa, CriarDetalhesTarefaDto>();
         CreateMap<Usuario, CriarUsuarioDto>();
         CreateMap<Usuario, UsuarioDto>();
+        CreateMap<Tag, CriarTagDto>();
+        CreateMap<Tag, TagDto>();
+        CreateMap<TarefaTag, CriarTarefaTagDto>();
+        CreateMap<TarefaTag, TarefaTagDto>();
     }
 }

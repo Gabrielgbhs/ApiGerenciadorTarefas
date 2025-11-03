@@ -4,7 +4,7 @@ using GerenciadorTarefas.Entities;
 using GerenciadorTarefas.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 
-
+ 
 namespace GerenciadorTarefas.Infra.Repositories.Interfaces;
 
 public class UsuarioDbRepository : IUsuarioRepository

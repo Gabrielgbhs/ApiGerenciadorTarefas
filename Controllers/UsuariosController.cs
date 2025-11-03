@@ -62,7 +62,7 @@ namespace GerenciadorTarefas.Controllers
             if (usuario == null) return NotFound();
             return Ok(usuario);
         }
-
+ 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

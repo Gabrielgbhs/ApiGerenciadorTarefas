@@ -1,7 +1,7 @@
 using System;
 using GerenciadorTarefas.Entities;
 using GerenciadorTarefas.Infra.DTOs;
-
+ 
 namespace GerenciadorTarefas.Services.Interfaces;
 
 public interface IUsuarioService

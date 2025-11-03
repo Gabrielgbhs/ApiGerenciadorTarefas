@@ -46,6 +46,13 @@ namespace GerenciadorTarefas.Controllers
             return CreatedAtAction(nameof(GetById), new { id = tarefaCriada.Id }, tarefaCriada);
         }
 
+        [HttpPost("associar-tag")]
+        public ActionResult<TarefaTagDto> AssociarTag(CriarTarefaTagDto novaTarefaTag)
+        {
+            var tarefaTagCriada = _tarefaService.AssociarTag(novaTarefaTag);
+            return Created(string.Empty, tarefaTagCriada);
+        }
+
         [HttpPut("{id}")]
         public ActionResult<Tarefa> Update(int id, Tarefa tarefaAtualizada)
         {

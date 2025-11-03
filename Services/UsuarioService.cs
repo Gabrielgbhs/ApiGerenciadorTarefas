@@ -4,7 +4,7 @@ using GerenciadorTarefas.Entities;
 using GerenciadorTarefas.Infra.DTOs;
 using GerenciadorTarefas.Infra.Repositories.Interfaces;
 using GerenciadorTarefas.Services.Interfaces;
-
+ 
 namespace GerenciadorTarefas.Services;
 
 public class UsuarioService : IUsuarioService

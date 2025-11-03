@@ -22,6 +22,13 @@ public class TarefaDbRepostory : ITarefaRepository
         return novaTarefa;
     }
 
+    public TarefaTag AssociarTag(TarefaTag novaTarefaTag)
+    {
+        _context.TarefaTags.Add(novaTarefaTag);
+        _context.SaveChanges();
+        return novaTarefaTag;
+    }
+
     public Tarefa? ObterPorId(int id)
     {
         return _context.Tarefas.FirstOrDefault(c => c.Id == id);

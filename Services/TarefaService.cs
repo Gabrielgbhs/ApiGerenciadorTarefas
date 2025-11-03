@@ -15,7 +15,7 @@ public class TarefaService : ITarefaService
         ITarefaRepository tarefaRepository,
         IMapper mapper)
         {
-            _tarefaRepository = tarefaRepository;
+        _tarefaRepository = tarefaRepository;
             _mapper = mapper;
         }
     public List<TarefaDto> ObterTodos()
@@ -42,6 +42,16 @@ public class TarefaService : ITarefaService
             } : null
         };
         return _mapper.Map<TarefaDto>(_tarefaRepository.Adicionar(novaTarefa));
+    }
+
+    public TarefaTagDto AssociarTag(CriarTarefaTagDto tarefaTagDto)
+    {
+        var novaTarefaTag = new TarefaTag
+        {
+            IdTag = tarefaTagDto.IdTag,
+            IdTarefa = tarefaTagDto.IdTarefa,
+        };
+        return _mapper.Map<TarefaTagDto>(_tarefaRepository.AssociarTag(novaTarefaTag));
     }
 
     public Tarefa? ObterPorId(int id)

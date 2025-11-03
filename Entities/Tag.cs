@@ -11,4 +11,5 @@ public class Tag
 {
     public int Id { get; set; }
     public string Nome { get; set; } = string.Empty;
+    public ICollection<TarefaTag> TarefaTags { get; set; } = new List<TarefaTag>();
 }

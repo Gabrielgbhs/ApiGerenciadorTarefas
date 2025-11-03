@@ -18,9 +18,11 @@ builder.Services.AddDbContext<GerenciadorTarefas.Infra.Context.TarefaContext>(op
 
 builder.Services.AddScoped<ITarefaService, TarefaService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<ITagService, TagService>();
 
 builder.Services.AddScoped<ITarefaRepository, TarefaDbRepostory>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioDbRepository>();
+builder.Services.AddScoped<ITagRepository, TagDbRepository>();
 
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
