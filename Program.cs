@@ -1,4 +1,4 @@
-// Program.cs teste2
+// Program.cs
 using GerenciadorTarefas.Infra.Mapping;
 using GerenciadorTarefas.Infra.Repositories.Interfaces;
 using GerenciadorTarefas.Services;
@@ -9,22 +9,20 @@ using GerenciadorTarefas.Infra.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 builder.Services.AddCors(options =>
 {
-    options
-        .AddPolicy(
-            name: MyAllowSpecificOrigins,
-            policy =>
-            {
-                policy
-                    .WithOrigins("http://localhost:3000", "http://127.0.0.1:3000")
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
-            }
-        );
+    options.AddPolicy(
+        name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy
+                .WithOrigins("http://127.0.0.1:3000")   // FRONT-END LIBERADO
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        }
+    );
 });
 
 builder.Services.AddControllers();
@@ -41,16 +39,12 @@ builder.Services.AddScoped<ITarefaRepository, TarefaDbRepostory>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioDbRepository>();
 builder.Services.AddScoped<ITagRepository, TagDbRepository>();
 
-
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -60,6 +54,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// ATIVA O CORS AQUI ✔
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
