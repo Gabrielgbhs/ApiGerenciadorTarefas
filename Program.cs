@@ -10,6 +10,23 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options
+        .AddPolicy(
+            name: MyAllowSpecificOrigins,
+            policy =>
+            {
+                policy
+                    .WithOrigins("http://localhost:3000", "http://127.0.0.1:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            }
+        );
+});
+
 builder.Services.AddControllers();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
